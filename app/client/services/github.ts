@@ -3,6 +3,9 @@ import { TypedDocumentNode, gql } from '@apollo/client';
 type Repository = {
     description: string;
     name: string;
+    owner: {
+        login: string;
+    };
     stargazers: {
         totalCount: number;
     };
@@ -33,6 +36,9 @@ export const GET_REPOSITORIES: TypedDocumentNode<SearchResponse, SearchVars> = g
                     ... on Repository {
                         name
                         description
+                        owner {
+                            login
+                        }
                         stargazers {
                             totalCount
                         }

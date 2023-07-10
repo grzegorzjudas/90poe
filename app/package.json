@@ -4,8 +4,11 @@
     "description": "90POE interview task",
     "main": "dist/index.js",
     "scripts": {
+        "build": "npm run build:client; npm run build:server",
         "build:client": "webpack",
         "build:server": "tsc -p .",
+        "docker:build": "npm run build && npm run package && docker image build -t grzegorzjudas/90poe:latest .",
+        "package": "cd dist && tar --exclude='*.map' -zcf ../artifact.tar.gz .",
         "start": "cd dist && node -r dotenv/config --enable-source-maps server/index.js dotenv_config_path=../env-local.env",
         "test": "echo \"Error: no test specified\" && exit 1"
     },

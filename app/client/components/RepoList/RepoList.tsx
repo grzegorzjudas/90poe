@@ -19,7 +19,7 @@ export function RepoList () {
 
     useEffect(() => {
         if (error) {
-            enqueueSnackbar(`GitHub error: ${error.message}`, { variant: 'error'});
+            enqueueSnackbar(`GitHub error: ${error.message}`, { variant: 'error' });
         }
     }, [error]);
 
@@ -44,7 +44,11 @@ export function RepoList () {
                 <TableBody>
                     {data.search.edges.map(({ node: repo }) => (
                         <TableRow key={repo.name}>
-                            <TableCell>{repo.name}</TableCell>
+                            <TableCell>
+                                <a href={`https://github.com/${repo.owner.login}/${repo.name}`}>
+                                    {repo.name}
+                                </a>
+                            </TableCell>
                             <TableCell>🌟 {numberFormat(repo.stargazers.totalCount)}</TableCell>
                             <TableCell>🍴 {numberFormat(repo.forks.totalCount)}</TableCell>
                         </TableRow>

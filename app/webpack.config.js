@@ -10,7 +10,7 @@ function getEnvironment () {
 
 module.exports = {
     mode: getEnvironment(),
-    devtool: isProduction() ? 'source-map' : 'cheap-module-source-map',
+    devtool: isProduction() ? undefined : 'cheap-module-source-map',
     entry: resolve(__dirname, './client/index.tsx'),
     output: {
         path: resolve(__dirname, './dist/static'),
