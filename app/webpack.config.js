@@ -1,7 +1,5 @@
 const { resolve } = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 function isProduction () {
     return process.env.NODE_ENV !== 'development';
 }
@@ -16,6 +14,7 @@ module.exports = {
     entry: resolve(__dirname, './client/index.tsx'),
     output: {
         path: resolve(__dirname, './dist/static'),
+        publicPath: 'static/',
         filename: 'index.js'
     },
     resolve: {
@@ -43,12 +42,5 @@ module.exports = {
                 }
             }
         ]
-    },
-    plugins: [
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: 'client/global.css', to: 'style.css' }
-            ]
-        })
-    ]
+    }
 };

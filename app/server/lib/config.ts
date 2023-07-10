@@ -31,9 +31,13 @@ export function getConfig (prop: string, type: 'string' | 'number' | 'boolean'):
     }
 }
 
-export default class Config {
+export class FrontendConfig {
     public static NODE_ENV = getConfig('NODE_ENV', 'string');
     public static APP_NAME = getConfig('APP_NAME', 'string');
+    public static GITHUB_TOKEN = getConfig('GITHUB_TOKEN', 'string');
+}
+
+export default class Config extends FrontendConfig {
     public static PORT = getConfig('PORT', 'number');
     public static LOG_LEVEL = getConfig('LOG_LEVEL', 'string');
     public static LOG_SILENT = getConfig('LOG_SILENT', 'boolean');

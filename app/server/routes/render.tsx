@@ -2,9 +2,19 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server'
 import { type Express } from 'express';
 
-import Config from '../lib/config';
+import Config, { FrontendConfig } from '../lib/config';
 
 import App from '../../client/components/App';
+
+function injectConfig() {
+    const injectable = Object.entries(FrontendConfig).reduce((acc, [ key, value ]) => {
+        acc[key] = value;
+
+        return acc;
+    }, {} as Record<string, any>);
+
+    return `window.__config__ = ${JSON.stringify(injectable)};`;
+}
 
 export default function (app: Express) {
     app.get('/', (req, res) => {
@@ -14,7 +24,7 @@ export default function (app: Express) {
 
         let didError = false;
         const stream = ReactDOMServer.renderToPipeableStream(
-            <App />,
+            <App inlineScripts={[injectConfig()]} />,
             {
                 bootstrapScripts: ['/static/index.js'],
                 onShellReady: () => {
