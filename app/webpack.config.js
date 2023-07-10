@@ -1,5 +1,7 @@
 const { resolve } = require('path');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 function isProduction () {
     return process.env.NODE_ENV !== 'development';
 }
@@ -11,7 +13,7 @@ function getEnvironment () {
 module.exports = {
     mode: getEnvironment(),
     devtool: isProduction() ? 'source-map' : 'cheap-module-source-map',
-    entry: resolve(__dirname, './src/index.tsx'),
+    entry: resolve(__dirname, './client/index.tsx'),
     output: {
         path: resolve(__dirname, './dist/static'),
         filename: 'index.js'
@@ -41,5 +43,12 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'client/global.css', to: 'style.css' }
+            ]
+        })
+    ]
 };
