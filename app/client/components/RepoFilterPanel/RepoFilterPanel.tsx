@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useMemo } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Toolbar } from '@mui/material';
 
 import styles from './RepoFilterPanel.styles';
@@ -16,6 +16,9 @@ export function RepoFilterPanel ({
     onSortChange,
     onLanguageChange
 }: RepoFilterPanelProps) {
+    const defaultSortValue = useMemo(() => defaultSort, []);
+    const defaultLanguageValue = useMemo(() => defaultLanguage, []);
+
     function handleSortChange (e: SelectChangeEvent) {
         onSortChange?.(e.target.value);
     }
@@ -28,13 +31,13 @@ export function RepoFilterPanel ({
         <Toolbar className={styles.toolbar} disableGutters>
             <FormControl variant="outlined" sx={{ minWidth: 120 }}>
                 <InputLabel id="repo-filter-panel-sort">Sort</InputLabel>
-                <Select label="Sort" labelId="repo-filter-panel-sort" onChange={handleSortChange} defaultValue={defaultSort}>
+                <Select label="Sort" labelId="repo-filter-panel-sort" onChange={handleSortChange} defaultValue={defaultSortValue}>
                     <MenuItem value="stars">Stars</MenuItem>
                     <MenuItem value="forks">Forks</MenuItem>
                 </Select>
             </FormControl>
             <FormControl variant="outlined">
-                <TextField label="Language" onChange={handleLanguageChange} defaultValue={defaultLanguage} />
+                <TextField label="Language" onChange={handleLanguageChange} defaultValue={defaultLanguageValue} />
             </FormControl>
         </Toolbar>
     );

@@ -14,13 +14,9 @@ type Repository = {
     };
 }
 
-type SearchResponse = {
+export type SearchResponse = {
     search: {
         repositoryCount: number;
-        pageInfo: {
-            startCursor: string;
-            endCursor: string;
-        };
         edges: ({
             node: Repository;
         })[];
@@ -37,10 +33,6 @@ export const GET_REPOSITORIES: TypedDocumentNode<SearchResponse, SearchVars> = g
     query GetRepositories($query: String!, $pageSize: Int!, $after: String) {
         search(query: $query, type: REPOSITORY, first: $pageSize, after: $after) {
             repositoryCount
-            pageInfo {
-                endCursor
-                startCursor
-            }
             edges {
                 node {
                     ... on Repository {
