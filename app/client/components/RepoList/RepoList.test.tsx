@@ -37,7 +37,7 @@ jest.mock('@apollo/client', () => ({
     useQuery: jest.fn().mockReturnValue({ loading: true })
 }));
 
-jest.mock('debounce', () => jest.fn().mockImplementation((fn) => fn))
+jest.mock('debounce', () => jest.fn().mockImplementation((fn) => fn));
 
 describe('RepoList', () => {
     const user = userEvent.setup();
