@@ -34,7 +34,7 @@ jobs:
         run: npm run test
       - name: Build
         working-directory: app
-        run: NODE_ENV=production npm run docker:build
+        run: NODE_ENV=production npm run build && npm run package
       - name: Push image to Docker Hub
         uses: docker/build-push-action@v4
         with:
