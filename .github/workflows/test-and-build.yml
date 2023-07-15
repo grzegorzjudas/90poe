@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Setup environment
         uses: actions/setup-node@v3
         with:
@@ -29,4 +34,9 @@ jobs:
         run: npm run test
       - name: Build
         working-directory: app
-        run: npm run build
+        run: NODE_ENV=production npm run docker:build
+      - name: Push image to Docker Hub
+        uses: docker/build-push-action@v4
+        with:
+            push: true
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/90poe:latest
