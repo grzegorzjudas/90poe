@@ -1,4 +1,5 @@
 # 90poe
+![](https://github.com/grzegorzjudas/90poe/actions/workflows/test-and-build.yml/badge.svg)
 
 ## Description
 This is an example React project created with React 18 that's server-side rendered (using streams). It's meant to provide a simple interface to list/search Github repositories. Frontend is using [Material UI](https://mui.com/) and communicates with Github using its GraphQL API (through Apollo client). Everything in TypeScript, covered with unit tests and fully dockerized. Uses webpack as a build tool and is configured with npm workspaces for future development.
