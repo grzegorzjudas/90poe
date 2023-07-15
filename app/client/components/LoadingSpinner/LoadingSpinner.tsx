@@ -7,11 +7,12 @@ import styles from './LoadingSpinner.styles';
 export type LoadingSpinnerProps = {
     size?: number | string;
     fullSize?: boolean;
+    className?: string;
 }
 
-export function LoadingSpinner ({ size = '5vw', fullSize = false }: LoadingSpinnerProps) {
+export function LoadingSpinner ({ size = '5vw', fullSize = false, className }: LoadingSpinnerProps) {
     return (
-        <div className={cx({ [styles.fullSize]: fullSize })}>
+        <div className={cx({ [styles.fullSize]: fullSize, [className]: !!className })}>
             <CircularProgress size={size} />
         </div>
     )
