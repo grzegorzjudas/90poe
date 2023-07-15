@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server'
+import ReactDOMServer from 'react-dom/server';
+import { StatusCodes } from 'http-status-codes';
 import { type Express } from 'express';
 
 import Config, { FrontendConfig } from '../lib/config';
 
 import App from '../../client/components/App';
 
-function injectConfig() {
+function injectConfig () {
     const injectable = Object.entries(FrontendConfig).reduce((acc, [ key, value ]) => {
         acc[key] = value;
 
@@ -24,11 +25,11 @@ export default function (app: Express) {
 
         let didError = false;
         const stream = ReactDOMServer.renderToPipeableStream(
-            <App inlineScripts={[injectConfig()]} />,
+            <App inlineScripts={[ injectConfig() ]} />,
             {
-                bootstrapScripts: ['/static/index.js'],
+                bootstrapScripts: [ '/static/index.js' ],
                 onShellReady: () => {
-                    res.statusCode = didError ? 500 : 200,
+                    res.statusCode = didError ? StatusCodes.INTERNAL_SERVER_ERROR : StatusCodes.OK;
                     res.setHeader('Content-Type', 'text/html');
                     stream.pipe(res);
                 },

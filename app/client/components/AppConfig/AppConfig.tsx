@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useContext, useEffect, useState } from 'react
 
 const AppConfig = React.createContext(null);
 
-type AppConfigProps = PropsWithChildren<{}>;
+type AppConfigProps = PropsWithChildren;
 
 export const AppConfigConsumer = AppConfig.Consumer;
 

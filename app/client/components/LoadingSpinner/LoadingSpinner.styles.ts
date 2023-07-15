@@ -8,4 +8,4 @@ export default {
         justify-content: center;
         align-items: center;
     `
-}
+};

@@ -8,6 +8,6 @@ export function createApolloClient (githubToken: string) {
                 Authorization: `Bearer ${githubToken}`
             }
         }),
-        cache: new InMemoryCache(),
+        cache: new InMemoryCache()
     });
 }

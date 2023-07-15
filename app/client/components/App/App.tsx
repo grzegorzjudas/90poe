@@ -57,7 +57,7 @@ export function App ({ inlineScripts = [] }: AppProps) {
                 </StyledEngineProvider>
             </body>
         </html>
-    )
+    );
 }
 
 export default App;

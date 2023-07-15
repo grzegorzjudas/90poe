@@ -10,8 +10,6 @@ import { RepoFilterPanel } from '../RepoFilterPanel';
 
 import styles from './RepoList.styles';
 
-export type RepoListProps = {};
-
 export function RepoList () {
     const [ pageSize, setPageSize ] = useState(25);
     const [ pageNumber, setPageNumber ] = useState(0);
@@ -34,11 +32,11 @@ export function RepoList () {
         if (error) {
             enqueueSnackbar(`GitHub error: ${error.message}`, { variant: 'error' });
         }
-    }, [error]);
+    }, [ error ]);
 
     useEffect(() => {
         setQuery(buildSearchQuery());
-    }, [sort, language]);
+    }, [ sort, language ]);
 
     function onSortChange (sort: string) {
         setSort(sort);

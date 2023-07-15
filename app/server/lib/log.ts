@@ -27,11 +27,13 @@ const LOG_COLORS = {
 };
 
 function getMetadata () {
-    return process.env.NODE_ENV === 'production' ? {
-        service: process.env.APP_NAME,
-        host: os.hostname(),
-        environment: process.env.NODE_ENV
-    } : {};
+    return process.env.NODE_ENV === 'production'
+        ? {
+            service: process.env.APP_NAME,
+            host: os.hostname(),
+            environment: process.env.NODE_ENV
+        }
+        : {};
 }
 
 function getParsedMetadata () {
@@ -83,4 +85,4 @@ export default <CustomLogger>createLogger({
             silent: Config.LOG_SILENT
         })
     ]
-})
+});

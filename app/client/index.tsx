@@ -5,4 +5,4 @@ import App from './components/App';
 
 import './global.css';
 
-hydrateRoot(document, <App />)
+hydrateRoot(document, <App />);

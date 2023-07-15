@@ -1,1 +1,1 @@
-export { default, RepoList, type RepoListProps } from './RepoList';
+export { default, RepoList } from './RepoList';

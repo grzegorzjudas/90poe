@@ -4,4 +4,4 @@ import StaticContentMiddleware from './StaticContentMiddleware';
 export default [
     CompressionMiddleware(),
     StaticContentMiddleware()
-]
+];

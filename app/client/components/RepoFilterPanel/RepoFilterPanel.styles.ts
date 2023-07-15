@@ -8,4 +8,4 @@ export default {
             margin-right: ${theme.spacing(1)}
         }
     `
-}
+};

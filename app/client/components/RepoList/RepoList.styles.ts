@@ -4,4 +4,4 @@ export default {
     loader: css`
         flex: 1;
     `
-}
+};
