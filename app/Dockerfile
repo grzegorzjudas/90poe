@@ -5,6 +5,6 @@ EXPOSE 80
 
 ADD artifact.tar.gz .
 ADD package.json .
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 CMD [ "node", "server/index.js" ]
